@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alliance AMS Enhanced Quote System - Multi-Supplier Demo</title>
+    <title>Alliance AMS Smart Quote System - Demo</title>
     <style>
         * {
             margin: 0;
@@ -28,13 +28,13 @@
     }
 
     .header h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         margin-bottom: 10px;
         font-weight: 700;
     }
 
     .header p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         opacity: 0.9;
     }
 
@@ -69,269 +69,7 @@
         font-size: 0.9rem;
     }
 
-    /* Enhanced processing styles */
-    .processing-section {
-        padding: 30px;
-    }
-
-    .process-btn {
-        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-        color: white;
-        border: none;
-        padding: 15px 30px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        width: 100%;
-        margin-bottom: 30px;
-    }
-
-    .process-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
-    }
-
-    .supplier-connections {
-        display: none;
-        margin: 20px 0;
-    }
-
-    .supplier-step {
-        display: flex;
-        align-items: center;
-        padding: 15px;
-        margin: 10px 0;
-        background: #f8f9fa;
-        border-radius: 8px;
-        border-left: 4px solid #0066CC;
-        transition: all 0.3s ease;
-    }
-
-    .supplier-step.checking {
-        background: #fff3cd;
-        border-left-color: #ffc107;
-    }
-
-    .supplier-step.connected {
-        background: #e8f5e9;
-        border-left-color: #28a745;
-    }
-
-    .supplier-logo {
-        width: 50px;
-        height: 50px;
-        background: #0066CC;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: bold;
-        margin-right: 15px;
-        font-size: 0.9rem;
-    }
-
-    .supplier-info {
-        flex: 1;
-    }
-
-    .supplier-name {
-        font-weight: 600;
-        color: #2c3e50;
-        margin-bottom: 3px;
-    }
-
-    .supplier-status {
-        font-size: 0.9rem;
-        color: #666;
-    }
-
-    .supplier-status.checking {
-        color: #856404;
-    }
-
-    .supplier-status.connected {
-        color: #155724;
-    }
-
-    /* Multi-supplier results */
-    .multi-supplier-results {
-        display: none;
-        margin-top: 30px;
-    }
-
-    .supplier-comparison {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 20px;
-        margin: 25px 0;
-    }
-
-    .supplier-card {
-        background: white;
-        border: 2px solid #e9ecef;
-        border-radius: 12px;
-        padding: 20px;
-        transition: all 0.3s ease;
-        position: relative;
-    }
-
-    .supplier-card.best-price {
-        border-color: #28a745;
-        background: #f8fff9;
-    }
-
-    .supplier-card.best-price::before {
-        content: "BEST PRICE";
-        position: absolute;
-        top: -10px;
-        right: 20px;
-        background: #28a745;
-        color: white;
-        padding: 5px 15px;
-        border-radius: 15px;
-        font-size: 0.8rem;
-        font-weight: bold;
-    }
-
-    .supplier-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .parts-comparison {
-        margin: 15px 0;
-    }
-
-    .part-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 0;
-        border-bottom: 1px solid #f0f0f0;
-    }
-
-    .part-row:last-child {
-        border-bottom: none;
-    }
-
-    .part-name {
-        font-weight: 600;
-        color: #2c3e50;
-        font-size: 0.9rem;
-    }
-
-    .part-price {
-        font-weight: bold;
-        color: #e74c3c;
-    }
-
-    .part-price.best {
-        color: #28a745;
-    }
-
-    .part-availability {
-        font-size: 0.8rem;
-        color: #666;
-        margin-top: 3px;
-    }
-
-    .total-section {
-        background: #f8f9fa;
-        padding: 15px;
-        border-radius: 8px;
-        margin-top: 15px;
-        border-top: 2px solid #dee2e6;
-    }
-
-    .total-label {
-        font-weight: 600;
-        color: #2c3e50;
-    }
-
-    .total-amount {
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: #e74c3c;
-    }
-
-    .total-amount.best {
-        color: #28a745;
-    }
-
-    /* Smart selection results */
-    .smart-selection {
-        display: none;
-        background: #e8f5e9;
-        border: 2px solid #28a745;
-        border-radius: 12px;
-        padding: 25px;
-        margin: 25px 0;
-    }
-
-    .selection-title {
-        color: #155724;
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-        text-align: center;
-    }
-
-    .savings-highlight {
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        margin: 20px 0;
-        border: 1px solid #c3e6cb;
-        text-align: center;
-    }
-
-    .savings-amount {
-        font-size: 2rem;
-        font-weight: bold;
-        color: #155724;
-        margin-bottom: 5px;
-    }
-
-    .savings-label {
-        color: #666;
-        font-size: 0.9rem;
-    }
-
-    .selected-items {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 15px;
-        margin: 20px 0;
-    }
-
-    .selected-item {
-        background: white;
-        padding: 15px;
-        border-radius: 8px;
-        border: 1px solid #c3e6cb;
-    }
-
-    .item-name {
-        font-weight: 600;
-        color: #2c3e50;
-        margin-bottom: 5px;
-    }
-
-    .item-supplier {
-        font-size: 0.9rem;
-        color: #155724;
-        margin-bottom: 3px;
-    }
-
-    .item-details {
-        font-size: 0.8rem;
-        color: #666;
-    }
-
-    /* Email styles */
+    /* Email Interface */
     .email-interface {
         padding: 30px;
     }
@@ -376,16 +114,307 @@
         color: #0066CC;
     }
 
+    /* Processing Interface */
+    .processing-section {
+        padding: 30px;
+    }
+
+    .process-btn {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .process-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+    }
+
+    .processing-steps {
+        display: none;
+        margin: 20px 0;
+    }
+
+    .processing-step {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        margin: 10px 0;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid #28a745;
+        transition: all 0.3s ease;
+    }
+
+    .processing-step.active {
+        background: #e8f5e9;
+        border-left-color: #20c997;
+    }
+
+    .step-icon {
+        font-size: 1.5rem;
+        margin-right: 15px;
+    }
+
+    .step-text {
+        flex: 1;
+        font-weight: 500;
+    }
+
+    .step-status {
+        font-size: 0.9rem;
+        color: #28a745;
+        font-weight: 600;
+    }
+
+    /* Multi-Supplier Results */
+    .supplier-results {
+        display: none;
+        margin-top: 30px;
+    }
+
+    .supplier-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .supplier-card {
+        background: white;
+        border: 2px solid #e9ecef;
+        border-radius: 12px;
+        padding: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .supplier-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        border-color: #0066CC;
+    }
+
+    .supplier-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .supplier-logo {
+        width: 50px;
+        height: 50px;
+        background: #0066CC;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        margin-right: 15px;
+    }
+
+    .supplier-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    .supplier-status {
+        font-size: 0.9rem;
+        color: #28a745;
+        margin-top: 5px;
+    }
+
+    .parts-list {
+        margin: 15px 0;
+    }
+
+    .part-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .part-item:last-child {
+        border-bottom: none;
+    }
+
+    .part-info {
+        flex: 1;
+    }
+
+    .part-name {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 3px;
+    }
+
+    .part-sku {
+        font-family: 'Courier New', monospace;
+        font-size: 0.85rem;
+        color: #666;
+    }
+
+    .part-price {
+        font-weight: bold;
+        color: #e74c3c;
+        font-size: 1.1rem;
+    }
+
+    .availability {
+        font-size: 0.8rem;
+        color: #28a745;
+        margin-top: 3px;
+    }
+
+    /* Quote Generation */
+    .quote-generation {
+        display: none;
+        margin-top: 30px;
+        background: #e8f5e9;
+        border: 2px solid #28a745;
+        border-radius: 12px;
+        padding: 25px;
+    }
+
+    .quote-header {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .quote-title {
+        font-size: 1.5rem;
+        color: #155724;
+        margin-bottom: 10px;
+    }
+
+    .quote-summary {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .summary-item {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        border: 1px solid #c3e6cb;
+    }
+
+    .summary-label {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 5px;
+    }
+
+    .summary-value {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #155724;
+    }
+
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+    }
+
+    .benefit-card {
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .benefit-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    .benefit-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    .benefit-description {
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .implementation-section {
+        background: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 12px;
+        padding: 25px;
+        margin: 30px 0;
+    }
+
+    .implementation-title {
+        color: #856404;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+
+    .implementation-steps {
+        list-style: none;
+        padding: 0;
+    }
+
+    .implementation-steps li {
+        padding: 10px 0;
+        border-bottom: 1px solid #fff3cd;
+        position: relative;
+        padding-left: 30px;
+    }
+
+    .implementation-steps li::before {
+        content: counter(step-counter);
+        counter-increment: step-counter;
+        position: absolute;
+        left: 0;
+        top: 10px;
+        background: #ffc107;
+        color: white;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    .implementation-steps {
+        counter-reset: step-counter;
+    }
+
     @media (max-width: 768px) {
         .container {
             padding: 15px;
         }
         
-        .supplier-comparison {
+        .supplier-grid {
             grid-template-columns: 1fr;
         }
         
-        .selected-items {
+        .quote-summary {
             grid-template-columns: 1fr;
         }
     }
@@ -395,8 +424,8 @@
 </head>
 <body>
     <div class="header">
-        <h1>Alliance AMS Enhanced Quote System</h1>
-        <p>Multi-supplier automation with intelligent price comparison</p>
+        <h1>Alliance AMS Smart Quote System</h1>
+        <p>Transforming manual quotes into instant professional responses</p>
     </div>
 
 ```
@@ -404,8 +433,8 @@
     <!-- Customer Email Section -->
     <div class="demo-section">
         <div class="section-header">
-            <h2 class="section-title">📧 Customer Quote Request</h2>
-            <p class="section-subtitle">Real mining company email using Gavin's actual SKUs</p>
+            <h2 class="section-title">📧 Real Customer Email</h2>
+            <p class="section-subtitle">Using actual SKUs from your quote system</p>
         </div>
         
         <div class="email-interface">
@@ -413,15 +442,15 @@
                 <div class="email-meta">
                     <strong>From:</strong> maintenance@pilbaramining.com.au<br>
                     <strong>To:</strong> quotes@allianceams.com.au<br>
-                    <strong>Time:</strong> Today, 2:15 PM
+                    <strong>Time:</strong> Today, 9:15 AM
                 </div>
-                <div class="email-subject">URGENT: Quote Request - Fleet Down</div>
+                <div class="email-subject">Quote Request - Urgent Parts Needed</div>
             </div>
             
             <div class="email-body">
                 <p>Hi Gavin,</p>
                 
-                <p><strong>URGENT REQUEST:</strong> We have 3 trucks down and need these parts ASAP. Please quote with fastest delivery possible:</p>
+                <p>We need quotes for the following parts for our Landcruiser fleet maintenance. Trucks are down so need this urgently please:</p>
                 
                 <div class="sku-item">GD516-C - Bosch Distributor Cap</div>
                 <div class="sku-item">42603YC040 - Centre Cap</div>
@@ -429,9 +458,7 @@
                 <div class="sku-item">6812460150 - Door Glass Left</div>
                 <div class="sku-item">6811460140 - Door Glass Right</div>
                 
-                <p><strong>Critical:</strong> Need delivery by Thursday or we lose another day of production. Cost is secondary to speed.</p>
-                
-                <p>Please check all your suppliers and get back to us urgently.</p>
+                <p>Please send pricing and availability ASAP. We need these parts by Friday if possible.</p>
                 
                 <p>Thanks,<br>
                 <strong>Sarah Thompson</strong><br>
@@ -441,372 +468,356 @@
         </div>
     </div>
 
-    <!-- Enhanced Processing Section -->
+    <!-- Processing Section -->
     <div class="demo-section">
         <div class="section-header">
-            <h2 class="section-title">🚀 Enhanced Multi-Supplier Processing</h2>
-            <p class="section-subtitle">Automatically checks NAPA + Paramount + AAD for best pricing</p>
+            <h2 class="section-title">⚡ Smart Processing</h2>
+            <p class="section-subtitle">From 30+ minutes to under 2 minutes</p>
         </div>
         
         <div class="processing-section">
-            <button class="process-btn" onclick="startEnhancedProcessing()">
-                ⚡ Process with Multi-Supplier Intelligence
+            <button class="process-btn" onclick="startProcessing()">
+                🚀 Process Quote with Smart System
             </button>
             
-            <div class="supplier-connections" id="supplierConnections">
-                <div class="supplier-step" id="napaStep">
-                    <div class="supplier-logo">NAPA</div>
-                    <div class="supplier-info">
-                        <div class="supplier-name">NAPA Perth</div>
-                        <div class="supplier-status">Connecting to portal...</div>
-                    </div>
+            <div class="processing-steps" id="processingSteps">
+                <div class="processing-step" id="step1">
+                    <div class="step-icon">🔍</div>
+                    <div class="step-text">Scanning email for SKUs and product codes...</div>
+                    <div class="step-status">Found 5 items</div>
                 </div>
                 
-                <div class="supplier-step" id="paramountStep">
-                    <div class="supplier-logo">PAR</div>
-                    <div class="supplier-info">
-                        <div class="supplier-name">Paramount Automotive</div>
-                        <div class="supplier-status">Connecting to system...</div>
-                    </div>
+                <div class="processing-step" id="step2">
+                    <div class="step-icon">🌐</div>
+                    <div class="step-text">Looking up pricing and availability...</div>
+                    <div class="step-status">Connected to supplier systems</div>
                 </div>
                 
-                <div class="supplier-step" id="aadStep">
-                    <div class="supplier-logo">AAD</div>
-                    <div class="supplier-info">
-                        <div class="supplier-name">Australian Automotive Distributors</div>
-                        <div class="supplier-status">Connecting to database...</div>
-                    </div>
+                <div class="processing-step" id="step3">
+                    <div class="step-icon">📦</div>
+                    <div class="step-text">Checking stock levels and delivery times...</div>
+                    <div class="step-status">All items available</div>
+                </div>
+                
+                <div class="processing-step" id="step4">
+                    <div class="step-icon">📄</div>
+                    <div class="step-text">Generating professional quote...</div>
+                    <div class="step-status">Complete - Ready to send</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Multi-Supplier Comparison -->
+    <!-- Multi-Supplier Results -->
     <div class="demo-section">
-        <div class="multi-supplier-results" id="multiSupplierResults">
+        <div class="supplier-results" id="supplierResults">
             <div class="section-header">
-                <h2 class="section-title">📊 Live Supplier Comparison</h2>
-                <p class="section-subtitle">Real-time pricing and availability from all suppliers</p>
+                <h2 class="section-title">✅ Quote Results</h2>
+                <p class="section-subtitle">All parts found and priced automatically</p>
             </div>
             
-            <div class="supplier-comparison">
-                <div class="supplier-card">
-                    <div class="supplier-header">
-                        <div class="supplier-logo">NAPA</div>
-                        <div class="supplier-info">
-                            <div class="supplier-name">NAPA Perth</div>
-                            <div class="supplier-status connected">✅ Connected - 4/5 items available</div>
-                        </div>
+            <div style="background: #e8f5e9; border: 2px solid #28a745; border-radius: 12px; padding: 25px; margin: 20px;">
+                <h3 style="color: #155724; margin-bottom: 20px;">📋 Quote Summary</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #c3e6cb;">
+                        <div style="font-size: 0.9rem; color: #666; margin-bottom: 5px;">Processing Time</div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #155724;">1:45</div>
                     </div>
                     
-                    <div class="parts-comparison">
-                        <div class="part-row">
-                            <div>
-                                <div class="part-name">Bosch Distributor Cap</div>
-                                <div class="part-availability">In stock - Ships today</div>
-                            </div>
-                            <div class="part-price">$92.50</div>
-                        </div>
-                        <div class="part-row">
-                            <div>
-                                <div class="part-name">Centre Cap</div>
-                                <div class="part-availability">2 business days</div>
-                            </div>
-                            <div class="part-price">$48.20</div>
-                        </div>
-                        <div class="part-row">
-                            <div>
-                                <div class="part-name">Pipe Assembly</div>
-                                <div class="part-availability">Not available</div>
-                            </div>
-                            <div class="part-price">—</div>
-                        </div>
-                        <div class="part-row">
-                            <div>
-                                <div class="part-name">Door Glass Left</div>
-                                <div class="part-availability">In stock</div>
-                            </div>
-                            <div class="part-price">$295.00</div>
-                        </div>
-                        <div class="part-row">
-                            <div>
-                                <div class="part-name">Door Glass Right</div>
-                                <div class="part-availability">In stock</div>
-                            </div>
-                            <div class="part-price">$295.00</div>
-                        </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #c3e6cb;">
+                        <div style="font-size: 0.9rem; color: #666; margin-bottom: 5px;">Items Found</div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #155724;">5/5</div>
                     </div>
                     
-                    <div class="total-section">
-                        <div class="total-label">Available Total:</div>
-                        <div class="total-amount">$730.70</div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #c3e6cb;">
+                        <div style="font-size: 0.9rem; color: #666; margin-bottom: 5px;">Delivery</div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #155724;">Friday</div>
+                    </div>
+                    
+                    <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #c3e6cb;">
+                        <div style="font-size: 0.9rem; color: #666; margin-bottom: 5px;">Quote Value</div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #155724;">$983.62</div>
                     </div>
                 </div>
                 
-                <div class="supplier-card">
-                    <div class="supplier-header">
-                        <div class="supplier-logo">PAR</div>
-                        <div class="supplier-info">
-                            <div class="supplier-name">Paramount Automotive</div>
-                            <div class="supplier-status connected">✅ Connected - 3/5 items available</div>
-                        </div>
-                    </div>
-                    
-                    <div class="parts-comparison">
-                        <div class="part-row">
-                            <div>
-                                <div class="part-name">Bosch Distributor Cap</div>
-                                <div class="part-availability">Ships tomorrow</div>
-                            </div>
-                            <div class="part-price best">$87.50</div>
-                        </div>
-                        <div class="part-row">
-                            <div>
-                                <div class="part-name">Centre Cap</div>
-                                <div class="part-availability">Not stocked</div>
-                            </div>
-                            <div class="part-price">—</div>
-                        </div>
-                        <div class="part-row">
-                            <div>
-                                <div class="part-name">Pipe Assembly</div>
-                                <div class="part-availability">In stock - Fast ship</div>
-                            </div>
-                            <div class="part-price best">$175.00</div>
-                        </div>
-                        <div class="part-row">
-                            <div>
-                                <div class="part-name">Door Glass Left</div>
-                                <div class="part-availability">In stock</div>
-                            </div>
-                            <div class="part-price">$310.00</div>
-                        </div>
-                        <div class="part-row">
-                            <div>
-                                <div class="part-name">Door Glass Right</div>
-                                <div class="part-availability">Not available</div>
-                            </div>
-                            <div class="part-price">—</div>
-                        </div>
-                    </div>
-                    
-                    <div class="total-section">
-                        <div class="total-label">Available Total:</div>
-                        <div class="total-amount">$572.50</div>
-                    </div>
-                </div>
-                
-                <div class="supplier-card best-price">
-                    <div class="supplier-header">
-                        <div class="supplier-logo">AAD</div>
-                        <div class="supplier-info">
-                            <div class="supplier-name">Australian Automotive Distributors</div>
-                            <div class="supplier-status connected">✅ Connected - 5/5 items available</div>
-                        </div>
-                    </div>
-                    
-                    <div class="parts-comparison">
-                        <div class="part-row">
-                            <div>
-                                <div class="part-name">Bosch Distributor Cap</div>
-                                <div class="part-availability">Ships tomorrow</div>
-                            </div>
-                            <div class="part-price">$89.50</div>
-                        </div>
-                        <div class="part-row">
-                            <div>
-                                <div class="part-name">Centre Cap</div>
-                                <div class="part-availability">Ships Wednesday</div>
-                            </div>
-                            <div class="part-price best">$42.20</div>
-                        </div>
-                        <div class="part-row">
-                            <div>
-                                <div class="part-name">Pipe Assembly</div>
-                                <div class="part-availability">In stock</div>
-                            </div>
-                            <div class="part-price">$189.50</div>
-                        </div>
-                        <div class="part-row">
-                            <div>
-                                <div class="part-name">Door Glass Left</div>
-                                <div class="part-availability">Ships tomorrow</div>
-                            </div>
-                            <div class="part-price best">$275.00</div>
-                        </div>
-                        <div class="part-row">
-                            <div>
-                                <div class="part-name">Door Glass Right</div>
-                                <div class="part-availability">Ships tomorrow</div>
-                            </div>
-                            <div class="part-price best">$275.00</div>
-                        </div>
-                    </div>
-                    
-                    <div class="total-section">
-                        <div class="total-label">Complete Total:</div>
-                        <div class="total-amount best">$871.20</div>
-                    </div>
+                <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 8px; border: 1px solid #c3e6cb;">
+                    <h4 style="color: #155724; margin-bottom: 10px;">🎯 Key Benefits</h4>
+                    <ul style="margin: 0; padding-left: 20px; color: #155724;">
+                        <li><strong>Instant Response:</strong> Customer gets quote in 2 minutes, not hours</li>
+                        <li><strong>Emergency Ready:</strong> All parts available by Friday as requested</li>
+                        <li><strong>Professional Appearance:</strong> Complete branded quote with all details</li>
+                        <li><strong>More Time for Gavin:</strong> Freed up to focus on business growth</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Smart Selection Results -->
-    <div class="smart-selection" id="smartSelection">
-        <h3 class="selection-title">🧠 Smart Price Optimization Complete</h3>
-        
-        <div class="savings-highlight">
-            <div class="savings-amount">$78.30</div>
-            <div class="savings-label">Total savings vs. single supplier</div>
+    <!-- Quote Generation Results -->
+    <div class="quote-generation" id="quoteGeneration">
+        <div class="quote-header">
+            <h2 class="quote-title">🎉 Professional Quote Generated!</h2>
+            <p>Complete quote ready to send in under 2 minutes</p>
+        </div>
+    </div>
+
+    <!-- Professional Quote Email -->
+    <div class="demo-section">
+        <div class="section-header">
+            <h2 class="section-title">📧 Professional Quote Email</h2>
+            <p class="section-subtitle">Automatically generated and ready to send</p>
         </div>
         
-        <div class="selected-items">
-            <div class="selected-item">
-                <div class="item-name">Bosch Distributor Cap</div>
-                <div class="item-supplier">📦 Paramount - $87.50</div>
-                <div class="item-details">Ships tomorrow • Best price</div>
+        <div class="email-interface">
+            <div class="email-header">
+                <div class="email-meta">
+                    <strong>From:</strong> quotes@allianceams.com.au<br>
+                    <strong>To:</strong> maintenance@pilbaramining.com.au<br>
+                    <strong>Subject:</strong> Quote #AMS-2025-0147 - Landcruiser Fleet Parts<br>
+                    <strong>Time:</strong> Today, 9:17 AM (2 minutes after request!)
+                </div>
             </div>
             
-            <div class="selected-item">
-                <div class="item-name">Centre Cap</div>
-                <div class="item-supplier">📦 AAD - $42.20</div>
-                <div class="item-details">Ships Wednesday • Best price</div>
-            </div>
-            
-            <div class="selected-item">
-                <div class="item-name">Pipe Assembly</div>
-                <div class="item-supplier">📦 Paramount - $175.00</div>
-                <div class="item-details">In stock • Best price</div>
-            </div>
-            
-            <div class="selected-item">
-                <div class="item-name">Door Glass Left</div>
-                <div class="item-supplier">📦 AAD - $275.00</div>
-                <div class="item-details">Ships tomorrow • Best price</div>
-            </div>
-            
-            <div class="selected-item">
-                <div class="item-name">Door Glass Right</div>
-                <div class="item-supplier">📦 AAD - $275.00</div>
-                <div class="item-details">Ships tomorrow • Best price</div>
+            <div style="background: white; border: 2px solid #0066CC; border-radius: 8px; padding: 25px; margin-top: 20px;">
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <img style="height: 60px; margin-bottom: 15px;" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='60' viewBox='0 0 200 60'%3E%3Crect width='200' height='60' fill='%230066CC'/%3E%3Ctext x='100' y='35' text-anchor='middle' fill='white' font-family='Arial' font-size='18' font-weight='bold'%3EAlliance AMS%3C/text%3E%3C/svg%3E" alt="Alliance AMS">
+                    <h2 style="color: #0066CC; margin: 0;">QUOTATION</h2>
+                    <p style="color: #666; margin: 5px 0 0 0;">Quote #AMS-2025-0147</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 25px;">
+                    <div>
+                        <h4 style="color: #2c3e50; margin-bottom: 10px;">Quote For:</h4>
+                        <p style="margin: 0; line-height: 1.5;">
+                            <strong>Sarah Thompson</strong><br>
+                            Fleet Maintenance Supervisor<br>
+                            Pilbara Mining Operations<br>
+                            maintenance@pilbaramining.com.au
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #2c3e50; margin-bottom: 10px;">Quote Details:</h4>
+                        <p style="margin: 0; line-height: 1.5;">
+                            <strong>Date:</strong> January 15, 2025<br>
+                            <strong>Valid Until:</strong> January 29, 2025<br>
+                            <strong>Payment Terms:</strong> Net 30 days<br>
+                            <strong>Delivery:</strong> Perth Metro
+                        </p>
+                    </div>
+                </div>
+                
+                <table style="width: 100%; border-collapse: collapse; margin: 25px 0;">
+                    <thead>
+                        <tr style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+                            <th style="padding: 12px; text-align: left; font-weight: 600;">Item</th>
+                            <th style="padding: 12px; text-align: left; font-weight: 600;">Part Number</th>
+                            <th style="padding: 12px; text-align: center; font-weight: 600;">Qty</th>
+                            <th style="padding: 12px; text-align: right; font-weight: 600;">Unit Price</th>
+                            <th style="padding: 12px; text-align: right; font-weight: 600;">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #dee2e6;">
+                            <td style="padding: 12px;">Bosch Distributor Cap</td>
+                            <td style="padding: 12px; font-family: monospace; color: #0066CC;">GD516-C</td>
+                            <td style="padding: 12px; text-align: center;">1</td>
+                            <td style="padding: 12px; text-align: right;">$89.50</td>
+                            <td style="padding: 12px; text-align: right; font-weight: 600;">$89.50</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #dee2e6;">
+                            <td style="padding: 12px;">Centre Cap</td>
+                            <td style="padding: 12px; font-family: monospace; color: #0066CC;">42603YC040</td>
+                            <td style="padding: 12px; text-align: center;">1</td>
+                            <td style="padding: 12px; text-align: right;">$45.20</td>
+                            <td style="padding: 12px; text-align: right; font-weight: 600;">$45.20</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #dee2e6;">
+                            <td style="padding: 12px;">Pipe Assembly</td>
+                            <td style="padding: 12px; font-family: monospace; color: #0066CC;">1620651010</td>
+                            <td style="padding: 12px; text-align: center;">1</td>
+                            <td style="padding: 12px; text-align: right;">$189.50</td>
+                            <td style="padding: 12px; text-align: right; font-weight: 600;">$189.50</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #dee2e6;">
+                            <td style="padding: 12px;">Door Glass - Left Side</td>
+                            <td style="padding: 12px; font-family: monospace; color: #0066CC;">6812460150</td>
+                            <td style="padding: 12px; text-align: center;">1</td>
+                            <td style="padding: 12px; text-align: right;">$285.00</td>
+                            <td style="padding: 12px; text-align: right; font-weight: 600;">$285.00</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #dee2e6;">
+                            <td style="padding: 12px;">Door Glass - Right Side</td>
+                            <td style="padding: 12px; font-family: monospace; color: #0066CC;">6811460140</td>
+                            <td style="padding: 12px; text-align: center;">1</td>
+                            <td style="padding: 12px; text-align: right;">$285.00</td>
+                            <td style="padding: 12px; text-align: right; font-weight: 600;">$285.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background: #f8f9fa; border-top: 2px solid #dee2e6;">
+                            <td colspan="4" style="padding: 15px; text-align: right; font-weight: 600; font-size: 1.1rem;">SUBTOTAL:</td>
+                            <td style="padding: 15px; text-align: right; font-weight: 600; font-size: 1.1rem;">$894.20</td>
+                        </tr>
+                        <tr style="background: #f8f9fa;">
+                            <td colspan="4" style="padding: 15px; text-align: right; font-weight: 600;">GST (10%):</td>
+                            <td style="padding: 15px; text-align: right; font-weight: 600;">$89.42</td>
+                        </tr>
+                        <tr style="background: #e8f5e9; border-top: 2px solid #28a745;">
+                            <td colspan="4" style="padding: 20px; text-align: right; font-weight: bold; font-size: 1.2rem; color: #155724;">TOTAL:</td>
+                            <td style="padding: 20px; text-align: right; font-weight: bold; font-size: 1.2rem; color: #155724;">$983.62</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                
+                <div style="background: #e8f4fd; padding: 20px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #0066CC;">
+                    <h4 style="color: #0066CC; margin-bottom: 15px;">📦 Delivery Information</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <div>
+                            <strong>Distributor Cap:</strong><br>
+                            <span style="color: #28a745;">✅ In stock - Ships today</span>
+                        </div>
+                        <div>
+                            <strong>Centre Cap:</strong><br>
+                            <span style="color: #ffc107;">⏳ Ships Wednesday</span>
+                        </div>
+                        <div>
+                            <strong>Pipe Assembly:</strong><br>
+                            <span style="color: #28a745;">✅ In stock - Ships tomorrow</span>
+                        </div>
+                        <div>
+                            <strong>Door Glass (Both):</strong><br>
+                            <span style="color: #28a745;">✅ In stock - Ships Thursday</span>
+                        </div>
+                    </div>
+                    <p style="margin: 15px 0 0 0; font-weight: 600; color: #0066CC;">
+                        🚚 <strong>All items will be delivered by Friday as requested</strong>
+                    </p>
+                </div>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ffc107;">
+                    <h4 style="color: #856404; margin-bottom: 10px;">💡 Alliance AMS Advantage</h4>
+                    <p style="margin: 0; color: #856404;">
+                        <strong>Best Price Guarantee:</strong> We've checked multiple suppliers to ensure you're getting the best available pricing. 
+                        <strong>Quality Assurance:</strong> All parts come with manufacturer warranty and our 30-day satisfaction guarantee.
+                    </p>
+                </div>
+                
+                <div style="border-top: 2px solid #dee2e6; padding-top: 20px; margin-top: 30px;">
+                    <h4 style="color: #2c3e50; margin-bottom: 15px;">Next Steps:</h4>
+                    <ol style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                        <li><strong>Reply to accept this quote</strong> - We'll process your order immediately</li>
+                        <li><strong>Purchase Order:</strong> Email PO to orders@allianceams.com.au</li>
+                        <li><strong>Payment:</strong> Invoice on delivery or account customers net 30 days</li>
+                        <li><strong>Questions?</strong> Call Gavin directly on (08) 9455-1234</li>
+                    </ol>
+                </div>
+                
+                <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid #dee2e6;">
+                    <p style="margin: 0; color: #666; font-size: 0.9rem;">
+                        <strong>Alliance AMS</strong> | Perth, WA | quotes@allianceams.com.au | (08) 9455-1234<br>
+                        <em>Your trusted automotive parts partner since 1985</em>
+                    </p>
+                </div>
             </div>
         </div>
-        
-        <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #c3e6cb; text-align: center;">
-            <h4 style="color: #155724; margin-bottom: 15px;">🎯 Delivery Timeline</h4>
-            <p style="margin: 0; color: #155724; font-weight: 600;">
-                ✅ <strong>All parts delivered by Wednesday</strong> - Meets customer's Thursday deadline with one day to spare!
-            </p>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="demo-section">
+        <div class="section-header">
+            <h2 class="section-title">🚀 Business Impact</h2>
+            <p class="section-subtitle">How this transforms Alliance AMS operations</p>
         </div>
         
-        <div style="background: #e8f4fd; padding: 15px; border-radius: 8px; border-left: 4px solid #0066CC;">
-            <strong>🚀 Processing Time:</strong> 2 minutes 15 seconds (vs. 45+ minutes manually)
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <div class="benefit-title">Lightning Fast Response</div>
+                <div class="benefit-description">2 minutes instead of 30+ minutes per quote. Respond to urgent mining requests immediately.</div>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">💼</div>
+                <div class="benefit-title">Professional Appearance</div>
+                <div class="benefit-description">Branded quotes that look as professional as major suppliers. Win more business.</div>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">📱</div>
+                <div class="benefit-title">Instant Competitive Advantage</div>
+                <div class="benefit-description">While competitors take hours, you respond in minutes. Be the supplier they call first.</div>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">🎯</div>
+                <div class="benefit-title">More Time for Growth</div>
+                <div class="benefit-description">Gavin freed up to focus on business development instead of manual quote processing.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Implementation Section -->
+    <div class="implementation-section">
+        <h3 class="implementation-title">📋 Implementation for Alliance AMS</h3>
+        
+        <ol class="implementation-steps">
+            <li><strong>Connect Supplier Systems:</strong> Integrate with NAPA, Paramount, AAD login portals for live pricing</li>
+            <li><strong>Install Smart Processing:</strong> Add email scanning and SKU recognition to WordPress system</li>
+            <li><strong>Test with Real Quotes:</strong> Process your existing 185+ quotes to verify accuracy</li>
+            <li><strong>Go Live:</strong> Start responding to quotes in minutes instead of hours</li>
+        </ol>
+        
+        <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 20px; border: 1px solid #ffc107;">
+            <strong>🎯 Result:</strong> Transform Alliance AMS from manual quote processing to automated competitive advantage. Handle more quotes, respond faster, win more business.
         </div>
     </div>
 </div>
 
 <script>
-    function startEnhancedProcessing() {
+    function startProcessing() {
         const button = document.querySelector('.process-btn');
-        const connections = document.getElementById('supplierConnections');
-        const results = document.getElementById('multiSupplierResults');
-        const selection = document.getElementById('smartSelection');
+        const steps = document.getElementById('processingSteps');
+        const results = document.getElementById('supplierResults');
+        const quote = document.getElementById('quoteGeneration');
         
         // Disable button and show processing
         button.disabled = true;
-        button.textContent = '🔄 Connecting to suppliers...';
-        connections.style.display = 'block';
+        button.textContent = '🔄 Processing Quote...';
+        steps.style.display = 'block';
         
-        // Animate supplier connections
-        setTimeout(() => {
-            updateSupplierStep('napaStep', 'checking', 'Checking NAPA portal...');
-        }, 500);
+        // Animate through steps
+        const stepElements = document.querySelectorAll('.processing-step');
+        let currentStep = 0;
         
-        setTimeout(() => {
-            updateSupplierStep('napaStep', 'connected', '✅ Connected - Checking stock');
-            updateSupplierStep('paramountStep', 'checking', 'Accessing Paramount system...');
-        }, 1200);
+        const processStep = () => {
+            if (currentStep < stepElements.length) {
+                stepElements[currentStep].classList.add('active');
+                currentStep++;
+                setTimeout(processStep, 800);
+            } else {
+                // Show results
+                setTimeout(() => {
+                    results.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        quote.style.display = 'block';
+                        
+                        // Scroll to results
+                        results.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                    }, 1500);
+                }, 1000);
+            }
+        };
         
-        setTimeout(() => {
-            updateSupplierStep('paramountStep', 'connected', '✅ Connected - Comparing prices');
-            updateSupplierStep('aadStep', 'checking', 'Querying AAD database...');
-        }, 2000);
-        
-        setTimeout(() => {
-            updateSupplierStep('aadStep', 'connected', '✅ Connected - Optimizing selection');
-            button.textContent = '🧠 Analyzing best pricing...';
-        }, 2800);
-        
-        setTimeout(() => {
-            results.style.display = 'block';
-            results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 3500);
-        
-        setTimeout(() => {
-            selection.style.display = 'block';
-            selection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 5000);
-    }
-    
-    function updateSupplierStep(stepId, status, statusText) {
-        const step = document.getElementById(stepId);
-        const statusElement = step.querySelector('.supplier-status');
-        
-        step.className = `supplier-step ${status}`;
-        statusElement.className = `supplier-status ${status}`;
-        statusElement.textContent = statusText;
+        setTimeout(processStep, 500);
     }
 </script>
 ```
 
 </body>
 </html>
-        function copyEmail() {
-            const emailText = document.getElementById('emailText').textContent;
-
-```
-        // Try modern clipboard API first
-        if (navigator.clipboard && window.isSecureContext) {
-            navigator.clipboard.writeText(emailText).then(function() {
-                showCopySuccess();
-            }).catch(function() {
-                fallbackCopy(emailText);
-            });
-        } else {
-            // Fallback for older browsers or non-HTTPS
-            fallbackCopy(emailText);
-        }
-    }
-    
-    function fallbackCopy(text) {
-        // Create temporary textarea
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-999999px';
-        textArea.style.top = '-999999px';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        
-        try {
-            document.execCommand('copy');
-            showCopySuccess();
-        } catch (err) {
-            // If all else fails, show the text to manually copy
-            alert('Copy failed. Here\'s the email text to copy manually:\n\n' + text);
-        }
-        
-        document.body.removeChild(textArea);
-    }
-    
-    function showCopySuccess() {
-        const successMsg = document.getElementById('copySuccess');
-        successMsg.style.display = 'block';
-        
-        setTimeout(() => {
-            successMsg.style.display = 'none';
-        }, 3000);
-    }
-```
