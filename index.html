@@ -44,11 +44,9 @@
         padding: 20px;
     }
 
+    /* MOBILE FIRST: Stack sections vertically */
     .demo-flow {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-        margin-top: 30px;
+        display: block;
     }
 
     .section {
@@ -56,6 +54,8 @@
         border-radius: 12px;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         overflow: hidden;
+        margin-bottom: 30px;
+        width: 100%;
     }
 
     .section-header {
@@ -79,7 +79,7 @@
         padding: 25px;
     }
 
-    /* Customer Quote Form */
+    /* Quote Form */
     .quote-form {
         background: #e8f4fd;
         border: 2px solid #0066CC;
@@ -117,7 +117,71 @@
 
     textarea.form-control {
         resize: vertical;
-        min-height: 100px;
+        min-height: 120px;
+    }
+
+    /* Parts Management */
+    .parts-list {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    .part-input {
+        display: block;
+        margin: 8px 0;
+        padding: 12px;
+        background: white;
+        border-radius: 6px;
+        border: 1px solid #e9ecef;
+    }
+
+    .part-input input {
+        width: 100%;
+        padding: 8px 10px;
+        border: 1px solid #e9ecef;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+
+    .part-input input:focus {
+        outline: none;
+        border-color: #0066CC;
+    }
+
+    .part-input .remove-part {
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        float: right;
+    }
+
+    .part-input .remove-part:hover {
+        background: #c82333;
+    }
+
+    .add-part-btn {
+        background: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .add-part-btn:hover {
+        background: #218838;
+        transform: translateY(-1px);
     }
 
     .submit-btn {
@@ -217,10 +281,12 @@
     }
 
     .quote-details {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
+        display: block;
         margin-bottom: 25px;
+    }
+
+    .detail-section {
+        margin-bottom: 20px;
     }
 
     .detail-section h4 {
@@ -233,11 +299,12 @@
         width: 100%;
         border-collapse: collapse;
         margin: 20px 0;
+        font-size: 0.85rem;
     }
 
     .quote-table th,
     .quote-table td {
-        padding: 12px;
+        padding: 8px 6px;
         text-align: left;
         border: 1px solid #e9ecef;
     }
@@ -253,41 +320,9 @@
         font-weight: bold;
     }
 
-    .quote-footer {
-        margin-top: 25px;
-        padding-top: 20px;
-        border-top: 2px solid #e9ecef;
-        text-align: center;
-    }
-
-    .send-quote-btn {
-        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-        color: white;
-        border: none;
-        padding: 15px 30px;
-        border-radius: 8px;
-        cursor: pointer;
+    .quote-table .subtotal-row {
+        background: #f8f9fa;
         font-weight: 600;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        margin: 15px 0;
-    }
-
-    .send-quote-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(40, 167, 69, 0.3);
-    }
-
-    /* Mobile Responsive */
-    @media (max-width: 968px) {
-        .demo-flow {
-            grid-template-columns: 1fr;
-        }
-        
-        .quote-details {
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
     }
 
     .api-simulation {
@@ -302,8 +337,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 8px 0;
+        padding: 6px 0;
         border-bottom: 1px solid rgba(255, 193, 7, 0.3);
+        font-size: 0.85rem;
     }
 
     .api-check:last-child {
@@ -315,6 +351,37 @@
         font-weight: 600;
     }
 
+    .send-quote-btn {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: white;
+        border: none;
+        padding: 15px 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        margin: 10px 5px;
+        width: 100%;
+    }
+
+    .send-quote-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(40, 167, 69, 0.3);
+    }
+
+    .print-btn {
+        background: #6c757d;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        margin: 10px 5px;
+        width: 100%;
+    }
+
     .time-saved {
         background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
         color: white;
@@ -324,14 +391,10 @@
         margin: 20px 0;
     }
 
-    .time-saved h3 {
-        margin-bottom: 10px;
-    }
-
     .time-comparison {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        gap: 15px;
         margin-top: 15px;
     }
 
@@ -343,9 +406,114 @@
     }
 
     .time-number {
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: bold;
         margin-bottom: 5px;
+    }
+
+    /* Print Styles */
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        
+        .quote-preview, .quote-preview * {
+            visibility: visible;
+        }
+        
+        .quote-preview {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            background: white !important;
+            border: none !important;
+            box-shadow: none !important;
+            margin: 0 !important;
+            padding: 20px !important;
+        }
+        
+        .send-quote-btn, .print-btn, .add-part-btn, .remove-part, .submit-btn {
+            display: none !important;
+        }
+    }
+
+    /* DESKTOP: Side by side only on very large screens */
+    @media (min-width: 1400px) {
+        .demo-flow {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .part-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr 80px 40px;
+            gap: 8px;
+            align-items: center;
+            padding: 8px;
+        }
+        
+        .part-input input {
+            margin-bottom: 0;
+        }
+        
+        .part-input .remove-part {
+            float: none;
+            margin: 0;
+        }
+        
+        .quote-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .quote-table {
+            font-size: 0.9rem;
+        }
+        
+        .quote-table th,
+        .quote-table td {
+            padding: 12px;
+        }
+        
+        .send-quote-btn, .print-btn {
+            width: auto;
+            display: inline-block;
+        }
+    }
+
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
+        .container {
+            padding: 10px;
+        }
+        
+        .section-content {
+            padding: 15px;
+        }
+        
+        .quote-form {
+            padding: 15px;
+        }
+        
+        .quote-preview {
+            padding: 15px;
+        }
+        
+        .form-control {
+            padding: 15px;
+            font-size: 16px;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+        }
     }
 </style>
 ```
@@ -360,44 +528,71 @@
 ```
 <div class="container">
     <div class="demo-flow">
-        <!-- Customer Request Side -->
+        <!-- Customer Request Section -->
         <div class="section">
             <div class="section-header">
                 <h2 class="section-title">📝 Customer Quote Request</h2>
-                <p class="section-subtitle">Real customer fills out quote form</p>
+                <p class="section-subtitle">Dynamic multi-part quote form</p>
             </div>
             <div class="section-content">
                 <div class="quote-form">
-                    <h3 style="color: #0066CC; margin-bottom: 20px; text-align: center;">Request a Quote</h3>
+                    <h3 style="color: #0066CC; margin-bottom: 20px; text-align: center;">Request Quote - Service Kit</h3>
                     
                     <div class="form-group">
                         <label class="form-label" for="customerName">Full Name *</label>
-                        <input type="text" id="customerName" class="form-control" value="Mark Thompson" readonly>
+                        <input type="text" id="customerName" class="form-control" value="Sarah Mitchell" readonly>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="customerEmail">Email Address *</label>
-                        <input type="email" id="customerEmail" class="form-control" value="operations@redrockmining.com.au" readonly>
+                        <input type="email" id="customerEmail" class="form-control" value="maintenance@ironorelogistics.com.au" readonly>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="customerPhone">Phone Number</label>
-                        <input type="tel" id="customerPhone" class="form-control" value="0428 555 789" readonly>
+                        <input type="tel" id="customerPhone" class="form-control" value="0429 888 123" readonly>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="productSKU">Product SKU / Part Number *</label>
-                        <input type="text" id="productSKU" class="form-control" value="SKU:12607" readonly>
+                        <label class="form-label" for="jobDescription">Job Description</label>
+                        <input type="text" id="jobDescription" class="form-control" value="Complete brake service - 2019 Toyota Hilux Fleet" readonly>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="productDescription">Product Description</label>
-                        <input type="text" id="productDescription" class="form-control" value="SPEED LIMITER HZJ79 6CYL" readonly>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="quantity">Quantity Required</label>
-                        <input type="number" id="quantity" class="form-control" value="1" readonly>
+                        <label class="form-label">Parts Required:</label>
+                        <div class="parts-list" id="partsList">
+                            <div class="part-input" data-part-index="0">
+                                <input type="text" placeholder="SKU/Part Number" value="SKU:15892" class="part-sku-input">
+                                <input type="text" placeholder="Description" value="Brake Pad Set - Front" class="part-desc-input">
+                                <input type="number" placeholder="Qty" value="2" min="1" class="part-qty-input">
+                                <button type="button" class="remove-part" onclick="removePart(0)" style="visibility: hidden;">Remove</button>
+                            </div>
+                            <div class="part-input" data-part-index="1">
+                                <input type="text" placeholder="SKU/Part Number" value="SKU:15893" class="part-sku-input">
+                                <input type="text" placeholder="Description" value="Brake Pad Set - Rear" class="part-desc-input">
+                                <input type="number" placeholder="Qty" value="2" min="1" class="part-qty-input">
+                                <button type="button" class="remove-part" onclick="removePart(1)">Remove</button>
+                            </div>
+                            <div class="part-input" data-part-index="2">
+                                <input type="text" placeholder="SKU/Part Number" value="SKU:7845" class="part-sku-input">
+                                <input type="text" placeholder="Description" value="Brake Rotor - Front Pair" class="part-desc-input">
+                                <input type="number" placeholder="Qty" value="2" min="1" class="part-qty-input">
+                                <button type="button" class="remove-part" onclick="removePart(2)">Remove</button>
+                            </div>
+                            <div class="part-input" data-part-index="3">
+                                <input type="text" placeholder="SKU/Part Number" value="SKU:7846" class="part-sku-input">
+                                <input type="text" placeholder="Description" value="Brake Rotor - Rear Pair" class="part-desc-input">
+                                <input type="number" placeholder="Qty" value="2" min="1" class="part-qty-input">
+                                <button type="button" class="remove-part" onclick="removePart(3)">Remove</button>
+                            </div>
+                            <div class="part-input" data-part-index="4">
+                                <input type="text" placeholder="SKU/Part Number" value="SKU:3021" class="part-sku-input">
+                                <input type="text" placeholder="Description" value="Brake Fluid DOT 4 - 1L" class="part-desc-input">
+                                <input type="number" placeholder="Qty" value="6" min="1" class="part-qty-input">
+                                <button type="button" class="remove-part" onclick="removePart(4)">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" class="add-part-btn" onclick="addNewPart()">+ Add Another Part</button>
                     </div>
 
                     <div class="form-group">
@@ -411,53 +606,53 @@
 
                     <div class="form-group">
                         <label class="form-label" for="customerNotes">Additional Notes</label>
-                        <textarea id="customerNotes" class="form-control" rows="4" readonly>Need this speed limiter for HZJ79 Landcruiser - truck is down and affecting our earthmoving operations. Prefer OEM quality part if available. Can collect same day if ready.</textarea>
+                        <textarea id="customerNotes" class="form-control" rows="4" readonly>Need complete brake service kit for 3 Hilux vehicles in our mining fleet. Trucks are due for 60,000km service. Prefer OEM or equivalent quality parts. Can collect from your warehouse if ready by Thursday. Invoice on monthly account terms.</textarea>
                     </div>
 
-                    <button type="button" class="submit-btn" onclick="processQuote()">
-                        🚀 Submit Quote Request
+                    <button type="button" class="submit-btn" onclick="processMultiPartQuote()">
+                        🚀 Submit Multi-Part Quote Request
                     </button>
                 </div>
 
                 <div class="processing" id="processing">
                     <div class="spinner"></div>
-                    <h3 style="color: #856404; margin-bottom: 15px;">Processing Quote Request...</h3>
+                    <h3 style="color: #856404; margin-bottom: 15px;">Processing Multi-Part Quote...</h3>
                     <div class="processing-steps">
-                        <div class="processing-step active" id="step1">📝 Analyzing quote request...</div>
-                        <div class="processing-step" id="step2">🔍 Checking supplier databases...</div>
-                        <div class="processing-step" id="step3">💰 Getting best pricing...</div>
-                        <div class="processing-step" id="step4">📋 Generating professional quote...</div>
+                        <div class="processing-step active" id="step1">📝 Analyzing 5 different parts...</div>
+                        <div class="processing-step" id="step2">🔍 Checking multiple supplier databases...</div>
+                        <div class="processing-step" id="step3">💰 Calculating bulk pricing discounts...</div>
+                        <div class="processing-step" id="step4">📋 Generating comprehensive quote...</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Gavin's Dashboard Side -->
+        <!-- Quote Results Section -->
         <div class="section">
             <div class="section-header">
-                <h2 class="section-title">⚡ Gavin's Quote Dashboard</h2>
-                <p class="section-subtitle">Automated quote generation ready to send</p>
+                <h2 class="section-title">⚡ Professional Quote Generated</h2>
+                <p class="section-subtitle">All parts found with bulk discounts applied</p>
             </div>
             <div class="section-content">
                 <div class="generated-quote" id="generatedQuote">
-                    <h3 style="color: #155724; margin-bottom: 20px; text-align: center;">✅ Quote Generated Successfully!</h3>
+                    <h3 style="color: #155724; margin-bottom: 20px; text-align: center;">✅ Complete Service Kit Quote Generated!</h3>
                     
                     <div class="api-simulation">
-                        <h4 style="color: #856404; margin-bottom: 15px;">🌐 API Supplier Checks:</h4>
+                        <h4 style="color: #856404; margin-bottom: 15px;">🌐 Supplier Checks for All Parts:</h4>
                         <div class="api-check">
-                            <span>NAPA Perth - SKU:12607</span>
-                            <span class="api-result">$185.50 ✅</span>
+                            <span>NAPA Perth - Brake Pads</span>
+                            <span class="api-result">$89.50 each ✅</span>
                         </div>
                         <div class="api-check">
-                            <span>AAD Perth - Speed Limiter</span>
-                            <span class="api-result">$198.00 ✅</span>
+                            <span>RDA Rotors - Front/Rear</span>
+                            <span class="api-result">$245.00 each ✅</span>
                         </div>
                         <div class="api-check">
-                            <span>Paramount Auto - HZJ79 Parts</span>
-                            <span class="api-result">$175.95 ✅</span>
+                            <span>Valvoline - DOT 4 Brake Fluid</span>
+                            <span class="api-result">$18.50 per litre ✅</span>
                         </div>
                         <div style="margin-top: 15px; font-weight: 600; color: #856404;">
-                            💡 Best Price: Paramount Auto - $175.95
+                            💡 Bulk Discount Applied: 12% off total order
                         </div>
                     </div>
 
@@ -465,23 +660,23 @@
                         <div class="quote-header">
                             <div class="quote-logo">ALLIANCE AMS</div>
                             <div style="color: #666; margin-bottom: 5px;">QUOTATION</div>
-                            <div class="quote-number">Quote #90671</div>
+                            <div class="quote-number">Quote #90672 - Fleet Service Kit</div>
                         </div>
 
                         <div class="quote-details">
                             <div class="detail-section">
                                 <h4>Quote For:</h4>
-                                <p><strong>Mark Thompson</strong><br>
-                                Red Rock Mining Operations<br>
-                                operations@redrockmining.com.au<br>
-                                0428 555 789</p>
+                                <p><strong>Sarah Mitchell</strong><br>
+                                Iron Ore Logistics<br>
+                                maintenance@ironorelogistics.com.au<br>
+                                0429 888 123</p>
                             </div>
                             <div class="detail-section">
                                 <h4>Quote Details:</h4>
                                 <p><strong>Date:</strong> July 18, 2025<br>
                                 <strong>Valid Until:</strong> August 1, 2025<br>
                                 <strong>Delivery:</strong> Perth Metro<br>
-                                <strong>Terms:</strong> Net 30 days</p>
+                                <strong>Terms:</strong> Monthly account</p>
                             </div>
                         </div>
 
@@ -497,23 +692,59 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Speed Limiter - HZJ79 6 Cylinder</td>
-                                    <td style="font-family: monospace;">SKU:12607</td>
-                                    <td>1</td>
-                                    <td>$175.95</td>
-                                    <td>$175.95</td>
+                                    <td>Brake Pad Set - Front (NAPA Ceramic)</td>
+                                    <td style="font-family: monospace;">SKU:15892</td>
+                                    <td>2</td>
+                                    <td>$89.50</td>
+                                    <td>$179.00</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4" style="text-align: right; font-weight: 600;">Subtotal:</td>
-                                    <td style="font-weight: 600;">$175.95</td>
+                                    <td>Brake Pad Set - Rear (NAPA Ceramic)</td>
+                                    <td style="font-family: monospace;">SKU:15893</td>
+                                    <td>2</td>
+                                    <td>$89.50</td>
+                                    <td>$179.00</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4" style="text-align: right; font-weight: 600;">GST (10%):</td>
-                                    <td style="font-weight: 600;">$17.60</td>
+                                    <td>Brake Rotor - Front Pair (RDA Slotted)</td>
+                                    <td style="font-family: monospace;">SKU:7845</td>
+                                    <td>2</td>
+                                    <td>$245.00</td>
+                                    <td>$490.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Brake Rotor - Rear Pair (RDA Slotted)</td>
+                                    <td style="font-family: monospace;">SKU:7846</td>
+                                    <td>2</td>
+                                    <td>$245.00</td>
+                                    <td>$490.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Brake Fluid DOT 4 - 1L (Valvoline)</td>
+                                    <td style="font-family: monospace;">SKU:3021</td>
+                                    <td>6</td>
+                                    <td>$18.50</td>
+                                    <td>$111.00</td>
+                                </tr>
+                                <tr class="subtotal-row">
+                                    <td colspan="4" style="text-align: right;">Subtotal:</td>
+                                    <td style="font-weight: 600;">$1,449.00</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="text-align: right; color: #e74c3c;">Fleet Discount (12%):</td>
+                                    <td style="color: #e74c3c; font-weight: 600;">-$173.88</td>
+                                </tr>
+                                <tr class="subtotal-row">
+                                    <td colspan="4" style="text-align: right;">Net Subtotal:</td>
+                                    <td style="font-weight: 600;">$1,275.12</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="text-align: right;">GST (10%):</td>
+                                    <td style="font-weight: 600;">$127.51</td>
                                 </tr>
                                 <tr class="total-row">
-                                    <td colspan="4" style="text-align: right; font-weight: bold;">TOTAL:</td>
-                                    <td style="font-weight: bold;">$193.55</td>
+                                    <td colspan="4" style="text-align: right; font-weight: bold; font-size: 1.1rem;">TOTAL:</td>
+                                    <td style="font-weight: bold; font-size: 1.1rem;">$1,402.63</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -521,25 +752,35 @@
                         <div style="background: #e8f4fd; padding: 15px; border-radius: 6px; margin: 20px 0;">
                             <h4 style="color: #0066CC; margin-bottom: 10px;">📦 Delivery Information</h4>
                             <p style="margin: 0; color: #2c3e50;">
-                                <strong>✅ In Stock:</strong> Available for immediate dispatch<br>
-                                <strong>🚚 Delivery:</strong> Next day delivery to Perth Metro<br>
-                                <strong>📞 Urgent:</strong> Same day pickup available<br>
-                                <strong>📝 Customer Note:</strong> OEM quality part - truck down affecting operations
+                                <strong>✅ All Parts In Stock:</strong> Complete kit available<br>
+                                <strong>🚚 Delivery:</strong> Thursday morning delivery<br>
+                                <strong>📝 Customer Note:</strong> 60,000km service kit - OEM quality
                             </p>
                         </div>
 
-                        <div class="quote-footer">
+                        <div style="background: #d4edda; padding: 15px; border-radius: 6px; margin: 20px 0;">
+                            <h4 style="color: #155724; margin-bottom: 10px;">💰 You Save $173.88!</h4>
+                            <p style="margin: 0; color: #155724;">
+                                12% fleet discount applied automatically for orders over $1,000
+                            </p>
+                        </div>
+
+                        <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 2px solid #e9ecef;">
                             <p style="color: #666; margin-bottom: 15px;">
                                 <strong>Alliance Autoparts & Mining Supplies</strong><br>
                                 Perth, WA | quotes@allianceams.com.au | (08) 9455-1234
                             </p>
                             
                             <button class="send-quote-btn" onclick="sendQuote()">
-                                📧 Send Quote to Mark Thompson
+                                📧 Send Quote to Sarah Mitchell
+                            </button>
+                            
+                            <button class="print-btn" onclick="window.print()">
+                                🖨️ Print Quote
                             </button>
                             
                             <div style="font-size: 0.9rem; color: #666; margin-top: 10px;">
-                                Quote will be emailed to: operations@redrockmining.com.au
+                                Quote will be emailed to: maintenance@ironorelogistics.com.au
                             </div>
                         </div>
                     </div>
@@ -549,34 +790,70 @@
     </div>
 
     <div class="time-saved" id="timeSaved" style="display: none;">
-        <h3>⏱️ Time Savings Achieved</h3>
-        <p>Traditional manual quote process vs Smart Quote System</p>
+        <h3>⏱️ Multi-Part Quote Efficiency</h3>
+        <p>Complex 5-part quote with bulk pricing calculations</p>
         <div class="time-comparison">
             <div class="time-box">
-                <div class="time-number">25-35</div>
+                <div class="time-number">45-60</div>
                 <div>Minutes (Manual)</div>
             </div>
             <div class="time-box">
-                <div class="time-number">1:45</div>
+                <div class="time-number">2:30</div>
                 <div>Minutes (Automated)</div>
             </div>
         </div>
         <p style="margin-top: 15px; font-weight: 600;">
-            🎯 Result: 95% time reduction • Professional quotes • Happy customers
+            🎯 Result: Bulk discounts applied • All parts verified • Professional presentation
         </p>
     </div>
 </div>
 
 <script>
-    function processQuote() {
+    let partCounter = 5;
+
+    function addNewPart() {
+        const partsList = document.getElementById('partsList');
+        const newPartDiv = document.createElement('div');
+        newPartDiv.className = 'part-input';
+        newPartDiv.setAttribute('data-part-index', partCounter);
+        
+        newPartDiv.innerHTML = `
+            <input type="text" placeholder="SKU/Part Number" class="part-sku-input">
+            <input type="text" placeholder="Description" class="part-desc-input">
+            <input type="number" placeholder="Qty" value="1" min="1" class="part-qty-input">
+            <button type="button" class="remove-part" onclick="removePart(${partCounter})">Remove</button>
+        `;
+        
+        partsList.appendChild(newPartDiv);
+        partCounter++;
+        
+        newPartDiv.querySelector('.part-sku-input').focus();
+    }
+
+    function removePart(index) {
+        const partElement = document.querySelector(`[data-part-index="${index}"]`);
+        if (partElement) {
+            partElement.remove();
+        }
+        
+        const remainingParts = document.querySelectorAll('.part-input');
+        if (remainingParts.length === 1) {
+            remainingParts[0].querySelector('.remove-part').style.visibility = 'hidden';
+        }
+    }
+
+    function processMultiPartQuote() {
         const processing = document.getElementById('processing');
         const generatedQuote = document.getElementById('generatedQuote');
         const timeSaved = document.getElementById('timeSaved');
         
-        // Show processing animation
+        const parts = document.querySelectorAll('.part-input');
+        const partCount = parts.length;
+        
+        document.getElementById('step1').textContent = `📝 Analyzing ${partCount} different parts...`;
+        
         processing.style.display = 'block';
         
-        // Animate through steps
         const steps = ['step1', 'step2', 'step3', 'step4'];
         let currentStep = 0;
         
@@ -590,35 +867,32 @@
             } else {
                 clearInterval(stepInterval);
                 
-                // Show generated quote after processing
                 setTimeout(() => {
                     processing.style.display = 'none';
                     generatedQuote.style.display = 'block';
                     
-                    // Show time savings
                     setTimeout(() => {
                         timeSaved.style.display = 'block';
                         timeSaved.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }, 1000);
                 }, 1000);
             }
-        }, 800);
+        }, 1000);
     }
-    
+
     function sendQuote() {
-        alert('✅ Quote #90671 sent to Mark Thompson at operations@redrockmining.com.au\n\nCustomer will receive professional quote within 2 minutes of their request!\n\nGavin saved 30+ minutes of manual work.');
+        alert('✅ Quote #90672 sent to Sarah Mitchell at maintenance@ironorelogistics.com.au\n\nFleet service kit quote with bulk discounts sent!\n\nCustomer saved $173.88 with automatic fleet pricing.');
     }
     
-    // Auto-start demo after page loads
     window.addEventListener('load', function() {
         setTimeout(() => {
-            if (confirm('🚀 Ready to see the Smart Quote System in action?\n\nThis will demonstrate how Mark Thompson\'s speed limiter quote gets processed automatically.')) {
-                processQuote();
+            if (confirm('🚀 Ready to see Multi-Part Quote System?\n\nThis shows how Sarah\'s brake service kit gets processed with bulk discounts.\n\nTry adding/removing parts first, then click Submit!')) {
+                // Let user explore first
             }
         }, 2000);
     });
     
-    console.log('Alliance AMS Smart Quote System loaded - Ready for demo!');
+    console.log('Alliance AMS Multi-Part Quote System loaded!');
 </script>
 ```
 
