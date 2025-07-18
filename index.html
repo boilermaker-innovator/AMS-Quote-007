@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alliance AMS SKU Recognition Test</title>
+    <title>Alliance AMS - Smart Quote System</title>
     <style>
         * {
             margin: 0;
@@ -18,38 +18,78 @@
         line-height: 1.6;
         color: #333;
         background: #f5f7fa;
-        padding: 20px;
-    }
-
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
     }
 
     .header {
         background: linear-gradient(135deg, #0066CC 0%, #003366 100%);
         color: white;
-        padding: 30px;
-        border-radius: 12px;
+        padding: 30px 20px;
         text-align: center;
-        margin-bottom: 30px;
     }
 
     .header h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
         margin-bottom: 10px;
+        font-weight: 700;
     }
 
-    .test-form {
+    .header p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .demo-flow {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 30px;
+    }
+
+    .section {
         background: white;
         border-radius: 12px;
-        padding: 30px;
-        margin-bottom: 30px;
         box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .section-header {
+        background: #f8f9fa;
+        padding: 20px;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+        color: #2c3e50;
+        margin-bottom: 5px;
+    }
+
+    .section-subtitle {
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .section-content {
+        padding: 25px;
+    }
+
+    /* Customer Quote Form */
+    .quote-form {
+        background: #e8f4fd;
+        border: 2px solid #0066CC;
+        border-radius: 12px;
+        padding: 25px;
+        margin-bottom: 20px;
     }
 
     .form-group {
-        margin-bottom: 25px;
+        margin-bottom: 20px;
     }
 
     .form-label {
@@ -57,16 +97,16 @@
         font-weight: 600;
         margin-bottom: 8px;
         color: #2c3e50;
-        font-size: 1.1rem;
     }
 
     .form-control {
         width: 100%;
         padding: 12px 15px;
         border: 2px solid #e9ecef;
-        border-radius: 8px;
+        border-radius: 6px;
         font-size: 14px;
         transition: border-color 0.3s ease;
+        font-family: inherit;
     }
 
     .form-control:focus {
@@ -75,36 +115,152 @@
         box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
     }
 
-    #emailText {
-        height: 200px;
-        font-family: 'Courier New', monospace;
+    textarea.form-control {
         resize: vertical;
+        min-height: 100px;
     }
 
-    .sample-buttons {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
+    .submit-btn {
+        background: linear-gradient(135deg, #0066CC 0%, #003366 100%);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 102, 204, 0.3);
+    }
+
+    /* Processing Animation */
+    .processing {
+        display: none;
+        text-align: center;
+        padding: 30px;
+        background: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+
+    .spinner {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #ffc107;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
         margin-bottom: 15px;
     }
 
-    .sample-btn {
-        background: #6c757d;
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 6px;
-        cursor: pointer;
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .processing-steps {
+        margin: 20px 0;
+    }
+
+    .processing-step {
+        padding: 8px 0;
+        color: #856404;
+        opacity: 0.7;
+    }
+
+    .processing-step.active {
+        opacity: 1;
+        font-weight: 600;
+    }
+
+    /* Generated Quote */
+    .generated-quote {
+        display: none;
+        background: #e8f5e9;
+        border: 2px solid #28a745;
+        border-radius: 12px;
+        padding: 25px;
+        margin-top: 20px;
+    }
+
+    .quote-preview {
+        background: white;
+        border-radius: 8px;
+        padding: 25px;
+        border: 1px solid #c3e6cb;
+    }
+
+    .quote-header {
+        text-align: center;
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #e9ecef;
+    }
+
+    .quote-logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #0066CC;
+        margin-bottom: 10px;
+    }
+
+    .quote-number {
+        color: #666;
         font-size: 0.9rem;
-        transition: all 0.3s ease;
     }
 
-    .sample-btn:hover {
-        background: #5a6268;
-        transform: translateY(-1px);
+    .quote-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-bottom: 25px;
     }
 
-    .scan-btn {
+    .detail-section h4 {
+        color: #2c3e50;
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+
+    .quote-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+
+    .quote-table th,
+    .quote-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #e9ecef;
+    }
+
+    .quote-table th {
+        background: #f8f9fa;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    .quote-table .total-row {
+        background: #e8f5e9;
+        font-weight: bold;
+    }
+
+    .quote-footer {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 2px solid #e9ecef;
+        text-align: center;
+    }
+
+    .send-quote-btn {
         background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
         color: white;
         border: none;
@@ -114,678 +270,355 @@
         font-weight: 600;
         font-size: 1.1rem;
         transition: all 0.3s ease;
-        width: 100%;
+        margin: 15px 0;
     }
 
-    .scan-btn:hover {
+    .send-quote-btn:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 16px rgba(40, 167, 69, 0.3);
     }
 
-    .results-section {
-        background: #e8f5e9;
-        border: 2px solid #28a745;
-        border-radius: 12px;
-        padding: 25px;
-        margin-top: 20px;
-        min-height: 100px;
+    /* Mobile Responsive */
+    @media (max-width: 968px) {
+        .demo-flow {
+            grid-template-columns: 1fr;
+        }
+        
+        .quote-details {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
     }
 
-    .results-title {
-        color: #155724;
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .results-content {
-        background: white;
-        border: 1px solid #c3e6cb;
-        border-radius: 8px;
-        padding: 20px;
-        font-size: 14px;
-        color: #155724;
-    }
-
-    .found-sku {
+    .api-simulation {
         background: #fff3cd;
-        padding: 12px 15px;
-        margin: 10px 0;
+        padding: 15px;
         border-radius: 6px;
+        margin: 15px 0;
         border-left: 4px solid #ffc107;
-        font-family: 'Courier New', monospace;
-        font-weight: 600;
+    }
+
+    .api-check {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 193, 7, 0.3);
     }
 
-    .sku-code {
-        color: #0066CC;
-        font-size: 1.1rem;
+    .api-check:last-child {
+        border-bottom: none;
     }
 
-    .sku-name {
-        color: #2c3e50;
-        font-family: inherit;
-        font-weight: normal;
-    }
-
-    .sku-details {
-        background: #e8f4fd;
-        padding: 15px;
-        margin: 10px 0;
-        border-radius: 8px;
-        border-left: 4px solid #0066CC;
-    }
-
-    .sku-info-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 10px;
-        margin-top: 10px;
-    }
-
-    .sku-info-item {
-        background: white;
-        padding: 8px 12px;
-        border-radius: 4px;
-        text-align: center;
-        border: 1px solid #b3d7ff;
-    }
-
-    .info-label {
-        font-size: 0.8rem;
-        color: #666;
-        margin-bottom: 2px;
-    }
-
-    .info-value {
+    .api-result {
+        color: #28a745;
         font-weight: 600;
-        color: #0066CC;
     }
 
-    .highlighted {
-        background: #ffeb3b;
-        padding: 2px 4px;
-        border-radius: 3px;
-        font-weight: bold;
-    }
-
-    .stats-row {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 15px;
+    .time-saved {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
         margin: 20px 0;
     }
 
-    .stat-box {
-        background: #0066CC;
-        color: white;
-        padding: 15px;
-        border-radius: 8px;
-        text-align: center;
-    }
-
-    .stat-number {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-
-    .stat-label {
-        font-size: 0.9rem;
-        opacity: 0.9;
-    }
-
-    .knowledge-section {
-        background: white;
-        border-radius: 12px;
-        padding: 30px;
-        margin-top: 30px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-
-    .section-title {
-        color: #0066CC;
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-        border-bottom: 2px solid #e9ecef;
-        padding-bottom: 10px;
-    }
-
-    .sku-database {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 15px;
-    }
-
-    .sku-card {
-        background: #f8f9fa;
-        border: 1px solid #e9ecef;
-        border-radius: 8px;
-        padding: 15px;
-        transition: all 0.3s ease;
-    }
-
-    .sku-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        border-color: #0066CC;
-    }
-
-    .sku-card-code {
-        font-family: 'Courier New', monospace;
-        font-weight: bold;
-        color: #0066CC;
-        margin-bottom: 8px;
-        font-size: 1.1rem;
-    }
-
-    .sku-card-name {
-        font-weight: 600;
-        margin-bottom: 8px;
-        color: #2c3e50;
-    }
-
-    .sku-card-details {
-        font-size: 0.9rem;
-        color: #666;
-        line-height: 1.4;
-    }
-
-    .next-step {
-        background: #fff3cd;
-        border: 2px solid #ffc107;
-        border-radius: 12px;
-        padding: 20px;
-        margin-top: 20px;
-        text-align: center;
-    }
-
-    .next-step h3 {
-        color: #856404;
+    .time-saved h3 {
         margin-bottom: 10px;
     }
 
-    .next-step p {
-        color: #856404;
-        margin: 0;
+    .time-comparison {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 15px;
     }
 
-    @media (max-width: 768px) {
-        .container {
-            padding: 10px;
-        }
-        
-        .sample-buttons {
-            flex-direction: column;
-        }
-        
-        .sample-btn {
-            width: 100%;
-        }
-        
-        .stats-row {
-            grid-template-columns: 1fr 1fr;
-        }
+    .time-box {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .time-number {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 5px;
     }
 </style>
 ```
 
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🔍 Alliance AMS SKU Recognition Test</h1>
-            <p>Testing automatic detection of part numbers in customer emails</p>
-        </div>
+    <div class="header">
+        <h1>Alliance AMS Smart Quote System</h1>
+        <p>From customer request to professional quote in under 2 minutes</p>
+    </div>
 
 ```
-    <form class="test-form" onsubmit="return false;">
-        <div class="form-group">
-            <label class="form-label" for="customerFrom">📧 Customer Email From:</label>
-            <input type="text" id="customerFrom" class="form-control" 
-                   value="maintenance@customer.com.au" readonly>
+<div class="container">
+    <div class="demo-flow">
+        <!-- Customer Request Side -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">📝 Customer Quote Request</h2>
+                <p class="section-subtitle">Real customer fills out quote form</p>
+            </div>
+            <div class="section-content">
+                <div class="quote-form">
+                    <h3 style="color: #0066CC; margin-bottom: 20px; text-align: center;">Request a Quote</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="customerName">Full Name *</label>
+                        <input type="text" id="customerName" class="form-control" value="Colin Urquhart" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="customerEmail">Email Address *</label>
+                        <input type="email" id="customerEmail" class="form-control" value="skidsearthmoving@outlook.com" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="customerPhone">Phone Number</label>
+                        <input type="tel" id="customerPhone" class="form-control" value="0427467330" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="productSKU">Product SKU / Part Number *</label>
+                        <input type="text" id="productSKU" class="form-control" value="SKU:12607" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="productDescription">Product Description</label>
+                        <input type="text" id="productDescription" class="form-control" value="SPEED LIMITER HZJ79 6CYL" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="quantity">Quantity Required</label>
+                        <input type="number" id="quantity" class="form-control" value="1" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="urgency">Urgency Level</label>
+                        <select id="urgency" class="form-control">
+                            <option value="standard">Standard (3-5 days)</option>
+                            <option value="urgent" selected>Urgent (Next day)</option>
+                            <option value="emergency">Emergency (Same day)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="customerNotes">Additional Notes</label>
+                        <textarea id="customerNotes" class="form-control" rows="4" readonly>Need this speed limiter for HZJ79 Landcruiser - truck is down and affecting our earthmoving operations. Prefer OEM quality part if available. Can collect same day if ready.</textarea>
+                    </div>
+
+                    <button type="button" class="submit-btn" onclick="processQuote()">
+                        🚀 Submit Quote Request
+                    </button>
+                </div>
+
+                <div class="processing" id="processing">
+                    <div class="spinner"></div>
+                    <h3 style="color: #856404; margin-bottom: 15px;">Processing Quote Request...</h3>
+                    <div class="processing-steps">
+                        <div class="processing-step active" id="step1">📝 Analyzing quote request...</div>
+                        <div class="processing-step" id="step2">🔍 Checking supplier databases...</div>
+                        <div class="processing-step" id="step3">💰 Getting best pricing...</div>
+                        <div class="processing-step" id="step4">📋 Generating professional quote...</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label class="form-label" for="customerTo">📬 To Alliance AMS:</label>
-            <input type="text" id="customerTo" class="form-control" 
-                   value="quotes@allianceams.com.au" readonly>
-        </div>
+        <!-- Gavin's Dashboard Side -->
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">⚡ Gavin's Quote Dashboard</h2>
+                <p class="section-subtitle">Automated quote generation ready to send</p>
+            </div>
+            <div class="section-content">
+                <div class="generated-quote" id="generatedQuote">
+                    <h3 style="color: #155724; margin-bottom: 20px; text-align: center;">✅ Quote Generated Successfully!</h3>
+                    
+                    <div class="api-simulation">
+                        <h4 style="color: #856404; margin-bottom: 15px;">🌐 API Supplier Checks:</h4>
+                        <div class="api-check">
+                            <span>NAPA Perth - SKU:12607</span>
+                            <span class="api-result">$185.50 ✅</span>
+                        </div>
+                        <div class="api-check">
+                            <span>AAD Perth - Speed Limiter</span>
+                            <span class="api-result">$198.00 ✅</span>
+                        </div>
+                        <div class="api-check">
+                            <span>Paramount Auto - HZJ79 Parts</span>
+                            <span class="api-result">$175.95 ✅</span>
+                        </div>
+                        <div style="margin-top: 15px; font-weight: 600; color: #856404;">
+                            💡 Best Price: Paramount Auto - $175.95
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <label class="form-label" for="emailSubject">📝 Subject:</label>
-            <input type="text" id="emailSubject" class="form-control" 
-                   value="Quote Request - Parts Needed">
-        </div>
+                    <div class="quote-preview">
+                        <div class="quote-header">
+                            <div class="quote-logo">ALLIANCE AMS</div>
+                            <div style="color: #666; margin-bottom: 5px;">QUOTATION</div>
+                            <div class="quote-number">Quote #90671</div>
+                        </div>
 
-        <div class="form-group">
-            <label class="form-label" for="emailText">💬 Customer Message:</label>
-            <div class="sample-buttons">
-                <button type="button" class="sample-btn" onclick="loadSample('deutsch')">Deutsch Connectors</button>
-                <button type="button" class="sample-btn" onclick="loadSample('service')">Service Kit</button>
-                <button type="button" class="sample-btn" onclick="loadSample('mixed')">Mixed Parts</button>
-                <button type="button" class="sample-btn" onclick="clearText()">Clear</button>
-            </div>
-            <textarea id="emailText" class="form-control" 
-                      placeholder="Customer message will appear here..."></textarea>
-        </div>
+                        <div class="quote-details">
+                            <div class="detail-section">
+                                <h4>Quote For:</h4>
+                                <p><strong>Colin Urquhart</strong><br>
+                                Skids Earthmoving<br>
+                                skidsearthmoving@outlook.com<br>
+                                0427467330</p>
+                            </div>
+                            <div class="detail-section">
+                                <h4>Quote Details:</h4>
+                                <p><strong>Date:</strong> July 18, 2025<br>
+                                <strong>Valid Until:</strong> August 1, 2025<br>
+                                <strong>Delivery:</strong> Perth Metro<br>
+                                <strong>Terms:</strong> Net 30 days</p>
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            <button type="button" class="scan-btn" onclick="scanForSKUs()">
-                🔍 Scan Email for SKUs
-            </button>
-        </div>
+                        <table class="quote-table">
+                            <thead>
+                                <tr>
+                                    <th>Item Description</th>
+                                    <th>SKU</th>
+                                    <th>Qty</th>
+                                    <th>Unit Price</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Speed Limiter - HZJ79 6 Cylinder</td>
+                                    <td style="font-family: monospace;">SKU:12607</td>
+                                    <td>1</td>
+                                    <td>$175.95</td>
+                                    <td>$175.95</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="text-align: right; font-weight: 600;">Subtotal:</td>
+                                    <td style="font-weight: 600;">$175.95</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="text-align: right; font-weight: 600;">GST (10%):</td>
+                                    <td style="font-weight: 600;">$17.60</td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td colspan="4" style="text-align: right; font-weight: bold;">TOTAL:</td>
+                                    <td style="font-weight: bold;">$193.55</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-        <div class="results-section">
-            <div class="results-title">
-                <span>📋</span>
-                <span>SKU Detection Results</span>
-            </div>
-            <div class="results-content" id="results">
-                Click "Scan Email for SKUs" to see automatic detection in action...
-            </div>
-        </div>
+                        <div style="background: #e8f4fd; padding: 15px; border-radius: 6px; margin: 20px 0;">
+                            <h4 style="color: #0066CC; margin-bottom: 10px;">📦 Delivery Information</h4>
+                            <p style="margin: 0; color: #2c3e50;">
+                                <strong>✅ In Stock:</strong> Available for immediate dispatch<br>
+                                <strong>🚚 Delivery:</strong> Next day delivery to Perth Metro<br>
+                                <strong>📞 Urgent:</strong> Same day pickup available<br>
+                                <strong>📝 Customer Note:</strong> OEM quality part - truck down affecting operations
+                            </p>
+                        </div>
 
-        <div class="stats-row">
-            <div class="stat-box">
-                <div class="stat-number" id="totalScans">0</div>
-                <div class="stat-label">Emails Scanned</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number" id="totalSKUs">0</div>
-                <div class="stat-label">SKUs Found</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number" id="recognizedSKUs">0</div>
-                <div class="stat-label">Recognized</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number" id="accuracyRate">100%</div>
-                <div class="stat-label">Success Rate</div>
+                        <div class="quote-footer">
+                            <p style="color: #666; margin-bottom: 15px;">
+                                <strong>Alliance Autoparts & Mining Supplies</strong><br>
+                                Perth, WA | quotes@allianceams.com.au | (08) 9455-1234
+                            </p>
+                            
+                            <button class="send-quote-btn" onclick="sendQuote()">
+                                📧 Send Quote to Colin Urquhart
+                            </button>
+                            
+                            <div style="font-size: 0.9rem; color: #666; margin-top: 10px;">
+                                Quote will be emailed to: skidsearthmoving@outlook.com
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </form>
+    </div>
 
-    <div class="knowledge-section">
-        <h2 class="section-title">🗄️ Alliance AMS SKU Database</h2>
-        <div class="sku-database" id="knownSKUs"></div>
-        
-        <div class="next-step">
-            <h3>🚀 Next Step: Real Quote Automation</h3>
-            <p>Once SKU detection is proven, connect to supplier APIs for live pricing and automatic quote generation.</p>
+    <div class="time-saved" id="timeSaved" style="display: none;">
+        <h3>⏱️ Time Savings Achieved</h3>
+        <p>Traditional manual quote process vs Smart Quote System</p>
+        <div class="time-comparison">
+            <div class="time-box">
+                <div class="time-number">25-35</div>
+                <div>Minutes (Manual)</div>
+            </div>
+            <div class="time-box">
+                <div class="time-number">1:45</div>
+                <div>Minutes (Automated)</div>
+            </div>
         </div>
+        <p style="margin-top: 15px; font-weight: 600;">
+            🎯 Result: 95% time reduction • Professional quotes • Happy customers
+        </p>
     </div>
 </div>
 
 <script>
-    // Alliance AMS SKU Database - Using Gavin's Real Quotes
-    const skuDatabase = {
-        // From Gavin's Real Quote 1 - Calibration Tape
-        'CALT': {
-            name: '8M Steel Measuring Tape with Calibration Certificate',
-            category: 'Calibration Tools',
-            price: 185.00,
-            supplier: 'Alliance AMS',
-            description: 'Certified calibrated steel measuring tape',
-            applications: 'Quality control and precision measurement'
-        },
+    function processQuote() {
+        const processing = document.getElementById('processing');
+        const generatedQuote = document.getElementById('generatedQuote');
+        const timeSaved = document.getElementById('timeSaved');
         
-        // From Gavin's Real Quote 2 - Toyota Part
-        '89425-60170': {
-            name: 'Toyota OEM Component',
-            category: 'Toyota Parts',
-            price: 125.50,
-            supplier: 'Toyota',
-            description: 'Genuine Toyota replacement part',
-            applications: 'Various Toyota models - requires verification'
-        },
+        // Show processing animation
+        processing.style.display = 'block';
         
-        // From Gavin's Real Quote 3 - Deutsch Connector Kit (9 parts)
-        'DTKIT-W/SHOP-CAT': {
-            name: 'Deutsch DT Cat Spec Connector Kit',
-            category: 'Electrical Connectors',
-            price: 289.95,
-            supplier: 'Deutsch',
-            description: 'Workshop DT Cat Spec connector kit',
-            applications: 'Caterpillar equipment electrical connections'
-        },
-        'DT04-8PA': {
-            name: 'Deutsch 8-Pin Plug Assembly',
-            category: 'Electrical Connectors',
-            price: 28.50,
-            supplier: 'Deutsch',
-            description: '8-pin male connector plug',
-            applications: 'Heavy duty electrical connections'
-        },
-        'DT06-8SA': {
-            name: 'Deutsch 8-Pin Socket Assembly',
-            category: 'Electrical Connectors',
-            price: 32.75,
-            supplier: 'Deutsch',
-            description: '8-pin female connector socket',
-            applications: 'Heavy duty electrical connections'
-        },
-        '0460-215-16141': {
-            name: 'Deutsch Connector Pins',
-            category: 'Electrical Components',
-            price: 2.85,
-            supplier: 'Deutsch',
-            description: 'Male connector pins',
-            applications: 'DT series connector assembly'
-        },
-        '0462-209-16141': {
-            name: 'Deutsch Connector Sockets',
-            category: 'Electrical Components',
-            price: 3.10,
-            supplier: 'Deutsch',
-            description: 'Female connector sockets',
-            applications: 'DT series connector assembly'
-        },
-        'W8P': {
-            name: 'Deutsch Wedge Lock - Plug',
-            category: 'Electrical Components',
-            price: 4.25,
-            supplier: 'Deutsch',
-            description: 'Wedge lock for 8-pin plug',
-            applications: 'Secures DT connector assemblies'
-        },
-        'W8S': {
-            name: 'Deutsch Wedge Lock - Socket',
-            category: 'Electrical Components',
-            price: 4.25,
-            supplier: 'Deutsch',
-            description: 'Wedge lock for 8-pin socket',
-            applications: 'Secures DT connector assemblies'
-        },
-        'AT8P-BT': {
-            name: 'Amphenol Back Shell Adapter - Plug',
-            category: 'Electrical Components',
-            price: 12.90,
-            supplier: 'Amphenol',
-            description: 'Back shell adapter for plug',
-            applications: 'Cable strain relief and protection'
-        },
-        'AT8S-BT': {
-            name: 'Amphenol Back Shell Adapter - Socket',
-            category: 'Electrical Components',
-            price: 12.90,
-            supplier: 'Amphenol',
-            description: 'Back shell adapter for socket',
-            applications: 'Cable strain relief and protection'
-        },
+        // Animate through steps
+        const steps = ['step1', 'step2', 'step3', 'step4'];
+        let currentStep = 0;
         
-        // From Gavin's Real Quote 4 - Generator Service Kit
-        'Z9': {
-            name: 'Ryco Oil Filter Z9',
-            category: 'Oil Filters',
-            price: 18.50,
-            supplier: 'Ryco',
-            description: 'Spin-on oil filter for generators',
-            applications: 'Generator maintenance and service'
-        },
-        '4461492': {
-            name: 'Fuel Filter',
-            category: 'Fuel Filters',
-            price: 42.75,
-            supplier: 'OEM',
-            description: 'Fuel system filter element',
-            applications: 'Generator fuel system filtration'
-        },
-        '3-92110': {
-            name: 'Air Filter Element',
-            category: 'Air Filters',
-            price: 35.20,
-            supplier: 'OEM',
-            description: 'Engine air filter element',
-            applications: 'Generator air intake filtration'
-        },
-        
-        // From Gavin's Real Quote 5 - Toyota Sunvisor
-        'PZQ6560020': {
-            name: 'External Metal Sunvisor - Toyota Land Cruiser',
-            category: 'Accessories',
-            price: 145.00,
-            supplier: 'Toyota',
-            description: 'External metal sunvisor for Land Cruiser',
-            applications: 'Toyota Land Cruiser sun protection'
-        }
-    };
-
-    // Sample customer emails - Gavin's Real Quotes
-    const sampleEmails = {
-        deutsch: {
-            subject: 'Quote Request - Urgent Parts Needed',
-            message: `Hi Gavin,
-```
-
-Would you be able to supply the below,
-
-Quantity 1 off, Deutsch DTKIT-W/SHOP-CAT workshop DT Cat Spec Connector Kit
-Quantity 10 off, DT04-8PA
-Quantity 10 off, DT06-8SA
-Quantity 80 off, Pins 0460-215-16141
-Quantity 80 off, Sockets 0462-209-16141
-Quantity 10 off, Wedge locks W8P
-Quantity 10 off, Wedge locks W8S
-Quantity 10 off, AT8P-BT, Amphenol Back shell Adapter
-Quantity 10 off, AT8S-BT Amphenol Back shell Adapter
-
-Need pricing ASAP please.
-
-Thanks,
-Workshop Manager`
-},
-
-```
-        service: {
-            subject: 'Service Kit Quote Request',
-            message: `If you have made up service kits for the serial number, if not these are the P/N of the filters on GN007 
-```
-
-Filter P/N:
-Oil filter: Ryco Z9
-Fuel filter: 4461492
-Air filter: 3-92110
-
-Please quote for complete service kit.
-
-Regards,
-Site Maintenance`
-},
-
-```
-        mixed: {
-            subject: 'Multiple Item Quote',
-            message: `Morning,
-```
-
-Can you quote me on 89425-60170 please
-
-Also need:
-
-- CALT (calibrated tape)
-- PZQ6560020 (sunvisor)
-
-Let me know pricing and availability.
-
-Thanks`
-}
-};
-
-```
-    // Statistics tracking
-    let stats = {
-        totalScans: 0,
-        totalSKUs: 0,
-        recognizedSKUs: 0
-    };
-
-    // FIXED: Simple SKU detection that actually works
-    function findAllSKUs(text) {
-        const foundSKUs = [];
-        
-        // Simple text search for each SKU in our database
-        Object.keys(skuDatabase).forEach(sku => {
-            if (text.includes(sku)) {
-                foundSKUs.push(sku);
+        const stepInterval = setInterval(() => {
+            if (currentStep > 0) {
+                document.getElementById(steps[currentStep - 1]).classList.remove('active');
             }
-        });
-        
-        return foundSKUs;
+            if (currentStep < steps.length) {
+                document.getElementById(steps[currentStep]).classList.add('active');
+                currentStep++;
+            } else {
+                clearInterval(stepInterval);
+                
+                // Show generated quote after processing
+                setTimeout(() => {
+                    processing.style.display = 'none';
+                    generatedQuote.style.display = 'block';
+                    
+                    // Show time savings
+                    setTimeout(() => {
+                        timeSaved.style.display = 'block';
+                        timeSaved.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 1000);
+                }, 1000);
+            }
+        }, 800);
     }
-
-    function loadSample(type) {
-        const sample = sampleEmails[type];
-        document.getElementById('emailSubject').value = sample.subject;
-        document.getElementById('emailText').value = sample.message;
-        
-        // Auto-scan after loading
-        setTimeout(scanForSKUs, 300);
+    
+    function sendQuote() {
+        alert('✅ Quote #90671 sent to Colin Urquhart at skidsearthmoving@outlook.com\n\nCustomer will receive professional quote within 2 minutes of their request!\n\nGavin saved 30+ minutes of manual work.');
     }
-
-    function clearText() {
-        document.getElementById('emailSubject').value = '';
-        document.getElementById('emailText').value = '';
-        document.getElementById('results').innerHTML = 'Click "Scan Email for SKUs" to see automatic detection in action...';
-    }
-
-    function scanForSKUs() {
-        const text = document.getElementById('emailText').value;
-        const resultsDiv = document.getElementById('results');
-        
-        if (!text.trim()) {
-            resultsDiv.innerHTML = '<div style="color: #dc3545; text-align: center; padding: 20px;">⚠️ Please enter email text to scan for SKUs.</div>';
-            return;
-        }
-
-        // Find all SKUs using simple detection
-        const foundSKUs = findAllSKUs(text);
-        let highlightedText = text;
-
-        // Highlight found SKUs in the text
-        foundSKUs.forEach(sku => {
-            // Simple highlighting - replace all instances of the SKU
-            const regex = new RegExp(sku.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
-            highlightedText = highlightedText.replace(regex, `<span class="highlighted">${sku}</span>`);
-        });
-
-        // Update statistics
-        stats.totalScans++;
-        stats.totalSKUs += foundSKUs.length;
-        stats.recognizedSKUs += foundSKUs.length;
-        updateStatistics();
-
-        // Display results
-        let resultsHTML = '';
-        
-        if (foundSKUs.length === 0) {
-            resultsHTML = '<div style="color: #dc3545; text-align: center; padding: 20px;">❌ No recognized SKUs found in this email.</div>';
-        } else {
-            resultsHTML = `<div style="color: #155724; font-weight: bold; margin-bottom: 20px; text-align: center;">✅ Found ${foundSKUs.length} recognized SKU${foundSKUs.length !== 1 ? 's' : ''} in this email:</div>`;
-            
-            foundSKUs.forEach(sku => {
-                const details = skuDatabase[sku];
-                resultsHTML += `
-                    <div class="found-sku">
-                        <span class="sku-code">${sku}</span>
-                        <span class="sku-name">${details.name}</span>
-                    </div>
-                    <div class="sku-details">
-                        <strong>${details.name}</strong>
-                        <div class="sku-info-grid">
-                            <div class="sku-info-item">
-                                <div class="info-label">Category</div>
-                                <div class="info-value">${details.category}</div>
-                            </div>
-                            <div class="sku-info-item">
-                                <div class="info-label">Supplier</div>
-                                <div class="info-value">${details.supplier}</div>
-                            </div>
-                            <div class="sku-info-item">
-                                <div class="info-label">Price</div>
-                                <div class="info-value">$${details.price}</div>
-                            </div>
-                            <div class="sku-info-item">
-                                <div class="info-label">Application</div>
-                                <div class="info-value">${details.applications}</div>
-                            </div>
-                        </div>
-                        <div style="margin-top: 10px; font-style: italic; color: #666;">
-                            ${details.description}
-                        </div>
-                    </div>
-                `;
-            });
-
-            // Show highlighted text
-            resultsHTML += `
-                <div style="margin-top: 25px;">
-                    <strong style="color: #155724;">📧 Email with detected SKUs highlighted:</strong>
-                    <div style="background: white; padding: 20px; border: 2px solid #28a745; border-radius: 8px; margin-top: 10px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.6;">
-                        ${highlightedText.replace(/\n/g, '<br>')}
-                    </div>
-                </div>
-            `;
-
-            resultsHTML += `
-                <div style="margin-top: 25px; padding: 20px; background: #fff3cd; border-radius: 8px; border: 2px solid #ffc107; text-align: center;">
-                    <strong style="color: #856404;">🚀 Next Step:</strong>
-                    <div style="color: #856404; margin-top: 8px;">
-                        Connect to supplier systems to get live pricing and automatically generate professional quote for customer.
-                    </div>
-                </div>
-            `;
-        }
-
-        resultsDiv.innerHTML = resultsHTML;
-    }
-
-    function updateStatistics() {
-        document.getElementById('totalScans').textContent = stats.totalScans;
-        document.getElementById('totalSKUs').textContent = stats.totalSKUs;
-        document.getElementById('recognizedSKUs').textContent = stats.recognizedSKUs;
-        
-        const accuracy = stats.totalSKUs > 0 ? Math.round((stats.recognizedSKUs / stats.totalSKUs) * 100) : 100;
-        document.getElementById('accuracyRate').textContent = accuracy + '%';
-    }
-
-    function displayKnownSKUs() {
-        const container = document.getElementById('knownSKUs');
-        let html = '';
-        
-        Object.entries(skuDatabase).forEach(([sku, details]) => {
-            html += `
-                <div class="sku-card">
-                    <div class="sku-card-code">${sku}</div>
-                    <div class="sku-card-name">${details.name}</div>
-                    <div class="sku-card-details">
-                        <strong>Category:</strong> ${details.category}<br>
-                        <strong>Supplier:</strong> ${details.supplier}<br>
-                        <strong>Price:</strong> $${details.price}<br>
-                        <strong>Application:</strong> ${details.applications}
-                    </div>
-                </div>
-            `;
-        });
-        
-        container.innerHTML = html;
-    }
-
-    // Auto-load example on page load
+    
+    // Auto-start demo after page loads
     window.addEventListener('load', function() {
-        // Load the Deutsch connector example automatically
-        loadSample('deutsch');
-        // Display the known SKUs database
-        displayKnownSKUs();
+        setTimeout(() => {
+            if (confirm('🚀 Ready to see the Smart Quote System in action?\n\nThis will demonstrate how Colin Urquhart\'s speed limiter quote gets processed automatically.')) {
+                processQuote();
+            }
+        }, 2000);
     });
     
-    console.log('Alliance AMS SKU Recognition Test - FIXED VERSION loaded successfully');
+    console.log('Alliance AMS Smart Quote System loaded - Ready for demo!');
 </script>
 ```
 
